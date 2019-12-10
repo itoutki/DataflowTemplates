@@ -1,0 +1,20 @@
+{
+    "BigQuery Schema": [
+        {
+            "name": "itemId",
+            "type": "STRING"
+        },
+        {
+            "name": "itemName",
+            "type": "STRING"
+        },
+        {
+            "name": "ownerId",
+            "type": "STRING"
+        },
+        {
+            "name": "ownerName",
+            "type": "STRING"
+        }
+    ]
+}
