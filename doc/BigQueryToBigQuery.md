@@ -59,6 +59,21 @@ dataflowジョブの実行
 - bigQueryLoadingTemporaryDirectory : BigQueryへのデータロードで使用する一時ディレクトリのGCSパス
 
 ```
-gcloud dataflow jobs run test06 --gcs-location=gs://dataflow-sandbox-001/templates/BigQueryToBigQuery.json --
-region=asia-northeast1 --parameters="outputTable=dataflow-sandbox-261206:dataset001.result001,JSONPath=gs://dataflow-sandbox-001/result001_schema.json,bigQueryLoadingTemporaryDirectory=gs://dataflow-sandbox-001/temp"
+gcloud dataflow jobs run test06 --gcs-location=gs://dataflow-sandbox-001/templates/BigQueryToBigQuery.json --region=asia-northeast1 --parameters="outputTable=dataflow-sandbox-261206:dataset001.result001,JSONPath=gs://dataflow-sandbox-001/result001_schema.json,bigQueryLoadingTemporaryDirectory=gs://dataflow-sandbox-001/temp"
+```
+
+```
+mvn compile exec:java \
+-Dexec.mainClass=com.google.cloud.teleport.templates.BigQueryRunQuery \
+-Dexec.cleanupDaemonThreads=false \
+-Dexec.args=" \
+--project=dataflow-sandbox-261206 \
+--stagingLocation=gs://dataflow-sandbox-001/staging \
+--tempLocation=gs://dataflow-sandbox-001/temp \
+--templateLocation=gs://dataflow-sandbox-001/templates/BigQueryRunQuery.json \
+--runner=DataflowRunner"
+```
+
+```
+gcloud dataflow jobs run test09 --gcs-location=gs://dataflow-sandbox-001/templates/BigQueryRunQuery.json --region=asia-northeast1 --parameters="bigQueryLoadingTemporaryDirectory=gs://dataflow-sandbox-001/temp"
 ```
